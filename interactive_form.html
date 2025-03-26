@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .animated-box {
+            width: 200px;
+            height: 100px;
+            background-color: royalblue;
+            color: white;
+            line-height: 100px;
+            text-align: center;
+            margin: 20px auto;
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateY(-50px);
+            transition: all 0.5s ease-in-out;
+        }
+
+        .animated-box.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: green;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Interactive Webpage</h2>
+        <input type="text" id="userInput" placeholder="Enter something...">
+        <button onclick="saveData()">Save</button>
+        <button onclick="toggleAnimation()">Animate</button>
+        
+        <div id="animatedBox" class="animated-box">Hello!</div>
+    </div>
+
+    <script>
+        // Load saved data from localStorage
+        document.addEventListener("DOMContentLoaded", function() {
+            let savedData = localStorage.getItem("userData");
+            if (savedData) {
+                document.getElementById("userInput").value = savedData;
+            }
+        });
+
+        // Save input to localStorage
+        function saveData() {
+            let input = document.getElementById("userInput").value;
+            localStorage.setItem("userData", input);
+            alert("Data saved!");
+        }
+
+        // Trigger CSS animation
+        function toggleAnimation() {
+            let box = document.getElementById("animatedBox");
+            box.classList.toggle("show");
+        }
+    </script>
+
+</body>
+</html>
